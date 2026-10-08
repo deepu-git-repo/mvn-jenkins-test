@@ -9,8 +9,8 @@ class OrderCalculatorTest {
     @Test
     void shouldCalculateOrderTotal() {
 
-        com.quickcart.OrderCalculator calculator =
-                new com.quickcart.OrderCalculator();
+        OrderCalculator calculator =
+                new OrderCalculator();
 
         double total =
                 calculator.calculateTotal(100.0, 2);
