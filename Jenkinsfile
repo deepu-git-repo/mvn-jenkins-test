@@ -36,6 +36,22 @@ pipeline {
                        bat 'mvn package -DskipTests'
                     }
                 }
+                stage('Verify Credentials') {
+
+                    steps {
+
+                        withCredentials([
+                            usernamePassword(
+                                credentialsId: 'artifactory-credentials',
+                                usernameVariable: 'ART_USER',
+                                passwordVariable: 'ART_PASSWORD'
+                            )
+                        ]) {
+
+                            echo 'Artifactory credentials successfully loaded'
+                        }
+                    }
+                }
     }
 
     post {
