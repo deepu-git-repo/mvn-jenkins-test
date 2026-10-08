@@ -15,12 +15,13 @@ pipeline {
         stage('Build') {
 
             steps {
+
                 echo "Building ${APP_NAME}"
-                sh 'mvn clean compile'
+
+                bat 'mvn clean compile'
             }
         }
-
-        stage('Test') {
+         stage('Test') {
 
             steps {
                 echo 'Running unit tests'
@@ -39,26 +40,12 @@ pipeline {
 
     post {
 
-        always {
-
-            junit(
-                allowEmptyResults: true,
-                testResults: 'target/surefire-reports/*.xml'
-            )
-        }
-
         success {
-
-            archiveArtifacts(
-                artifacts: 'target/*.jar',
-                fingerprint: true
-            )
-
-            echo 'QuickCart CI Pipeline SUCCESS'
+            echo 'QuickCart Maven build successful'
         }
 
         failure {
-            echo 'QuickCart CI Pipeline FAILED'
+            echo 'QuickCart Maven build failed'
         }
     }
 }
