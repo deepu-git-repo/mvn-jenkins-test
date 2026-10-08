@@ -16,6 +16,6 @@ public class OrderCalculator {
             );
         }
 
-        return price * quantity
+        return price * quantity;
     }
 }
